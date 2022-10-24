@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<error-handler name="global-error-handlerError_Handler" doc:id="a802e3b7-e914-4ee7-a725-f9e864e10e9f" >
+		<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="cd89e60d-8249-442b-976b-8e54f0b24b46" type="Any">
+			<ee:transform doc:name="set-errorname&amp; errordescription" doc:id="5e78a595-ad15-4925-81dd-11bcca1c9346" >
+				<ee:message >
+					<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+				</ee:message>
+			</ee:transform>
+			<set-payload value="#[payload]" doc:name="Set Payload" doc:id="0f1c428d-e6f8-4b2a-8ebe-344630137172" />
+		</on-error-continue>
+	</error-handler>
+</mule>

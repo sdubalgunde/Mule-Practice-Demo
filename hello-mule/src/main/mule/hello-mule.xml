@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="hello-muleFlow" doc:id="d75c19f1-ee17-4afe-9e15-b2047dad6f82" >
+		<http:listener doc:name="/hello-mule Listener" doc:id="ddb883c9-5ec4-42ca-9d72-e9203ecb6cd3" config-ref="hello-mule-http-listener-config" path="/hello-mule/{name}"/>
+		<set-payload value='#[%dw 2.0&#10;output application/json --- &#10;"Welcome To Mulesoft Learning " ++ attributes.uriParams.name default "client" ++" Happy Learning, " ++&#10;attributes.queryParams.name default "client" ++ "."]' doc:name="Set Payload" doc:id="600685ab-55a4-419b-ab2e-ac6d680faadd" />
+		<logger level="INFO" doc:name="Logger" doc:id="a778e30d-71fa-46af-b085-3081bac08f1b" message="#[payload]"/>
+	</flow>
+</mule>
